@@ -10,6 +10,7 @@ export default class GameScene extends Phaser.Scene {
 
   }  
 
+
   async preload ()
   {
     this.load.image('background', '../../assets/BG.png');
@@ -22,8 +23,8 @@ export default class GameScene extends Phaser.Scene {
     const equippedWearables = [82,8,4,4,4,5,7,1,0,1,1,3,7,0,0,0];
 
     const rawSVG = await Moralis.Cloud.run("getSVG",{numericTraits:numericTraits,equippedWearables:equippedWearables})
-    
-    const svgBlob = new Blob([rawSVG], {type:"image/svg+xml;charset=utf-8"})
+    const svg = rawSVG.replace("<style>", "<style>.gotchi-bg,.wearable-bg{display: none}");
+    const svgBlob = new Blob([svg], {type:"image/svg+xml;charset=utf-8"})
     const url = URL.createObjectURL(svgBlob)
     
     this.load.image('player',url);
