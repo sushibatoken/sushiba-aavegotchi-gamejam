@@ -1,4 +1,5 @@
 import 'phaser';
+import Model from './Model';
 import config from './Config/config';
 import GameScene from './Scenes/GameScene';
 import BootScene from './Scenes/BootScene';
@@ -15,6 +16,8 @@ var home = document.getElementById("home")
 class Game extends Phaser.Game {
   constructor () {
     super(config);
+    const model = new Model();
+    this.globals = { model };
     this.scene.add('Boot', BootScene);
     this.scene.add('Preloader', PreloaderScene);
     this.scene.add('Title', TitleScene);
