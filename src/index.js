@@ -1,0 +1,64 @@
+import 'phaser';
+import config from './Config/config';
+import GameScene from './Scenes/GameScene';
+import BootScene from './Scenes/BootScene';
+import PreloaderScene from './Scenes/PreloaderScene';
+import TitleScene from './Scenes/TitleScene';
+import OptionsScene from './Scenes/OptionsScene';
+import CreditsScene from './Scenes/CreditsScene';
+
+Moralis.initialize("ppKsJ87zo59ln2WnmJm3n66TM9mq06I4GYGqLxRq");
+Moralis.serverURL = "https://5naflsgtclgx.moralisweb3.com:2053/server";
+
+var home = document.getElementById("home")
+
+class Game extends Phaser.Game {
+  constructor () {
+    super(config);
+    this.scene.add('Boot', BootScene);
+    this.scene.add('Preloader', PreloaderScene);
+    this.scene.add('Title', TitleScene);
+    this.scene.add('Options', OptionsScene);
+    this.scene.add('Credits', CreditsScene);
+    this.scene.add('Game', GameScene);
+    this.scene.start('Boot');
+  }
+}
+
+function launch(){
+  let user = Moralis.User.current();
+  if (!user) {
+    console.log("PLEASE LOG IN WITH METAMASK!!")
+  }
+  else{
+    console.log(user.get("ethAddress") + " " + "logged in")
+    home.style.display = "none";
+    window.game = new Game();
+  }
+
+}
+
+launch();
+
+async function login() {
+  let user = Moralis.User.current();
+  if (!user) {
+    user = await Moralis.Web3.authenticate();
+    launch()
+  }
+  console.log("logged in user:", user);
+}
+
+async function logOut() {
+  await Moralis.User.logOut();
+  console.log("logged out");
+  location.reload();
+  home.style.display = "block";
+}
+
+
+
+document.getElementById("btn-login-home").onclick = login;
+document.getElementById("btn-login").onclick = login;
+document.getElementById("btn-logout").onclick = logOut;
+
