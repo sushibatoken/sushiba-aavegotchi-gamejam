@@ -4,19 +4,23 @@ var platforms;
 var player;
 var cursors;
 
+
 export default class GameScene extends Phaser.Scene {
   constructor () {
     super('Game');
 
   }  
-
-
+  
   async preload ()
   {
     this.load.image('background', '../../assets/BG.png');
-    this.load.image('ground', '../../assets/Tiles/Tile (2).png');
-    this.load.image('ground-right', '../../assets/Tiles/Tile (3).png');
-    this.load.image('competitor', '../../assets/player.png');
+
+    // Looad the tileset
+    this.load.image('tiles', '../../assets/Tilesets/platformPack_tilesheet.png');
+    
+    // Load the export Tiled JSON
+    this.load.tilemapTiledJSON('map', '../../assets/Tilemaps/map.json');
+
 
     // fetch player SVG
     const numericTraits = [1, 5, 99, 29, 1, 1]; // UI to change the traits
@@ -38,28 +42,35 @@ export default class GameScene extends Phaser.Scene {
   }
 
     async initPlayer(){
-      player = this.physics.add.sprite(30, 540, "player").setScale(0.5).refreshBody();
+      player = this.physics.add.sprite(30, 250, "player").setScale(0.5).refreshBody();
       player.setBounce(0.3);
       this.physics.add.collider(player, platforms);
+      // Camera movements go here
+      this.cameras.main.startFollow(player)
     }
 
-  async create ()
+  create ()
   {
+    // Set Background
     this.add.image(700, 400, 'background').setScale(0.8);
 
-    platforms = this.physics.add.staticGroup();
+    // The key matches the name given in the preload function when we loaded the Tiled JSON
+    const map = this.make.tilemap({ key: 'map' });
 
-    platforms.create(30,690, "ground").setScale(0.5).refreshBody();
-    platforms.create(95,690, "ground").setScale(0.5).refreshBody();
-    platforms.create(160,690, "ground").setScale(0.5).refreshBody();
-    platforms.create(225,690, "ground").setScale(0.5).refreshBody();
-    platforms.create(290,690, "ground").setScale(0.5).refreshBody();
-    platforms.create(355,690, "ground").setScale(0.5).refreshBody();
-    platforms.create(420,690, "ground-right").setScale(0.5).refreshBody();
+    //  The first argument of addTilesetImage is the name of the tileset we used in Tiled. 
+    // The second argument is the key of the image we loaded in the preload function.
+    const tileset = map.addTilesetImage('platformPack_tilesheet', 'tiles');
+
+    // Add platform layer
+    platforms = map.createLayer('Platform', tileset, 0, 200);
     
-    cursors = this.input.keyboard.createCursorKeys()
-
-
+    // Every tile in our map was given an index by Tiled to reference what should be shown there. 
+    // An index of our platform can only be greater than 0. setCollisionByExclusion tells Phaser to 
+    // enable collisions for every tile whose index isn't -1, therefore, all tiles
+    platforms.setCollisionByExclusion(-1, true);
+    
+    // Set cursor Movement
+    this.cursors = this.input.keyboard.createCursorKeys()
   }
 
   // 60 times per second  - 60 frames per second
@@ -69,25 +80,24 @@ export default class GameScene extends Phaser.Scene {
     return;
 
   // LOGIC
-  if (cursors.left.isDown)
-  {
-      player.setVelocityX(-160);
-  }
-  else if (cursors.right.isDown)
-  {
-      player.setVelocityX(160);
-  }
-  else
-  {
-      player.setVelocityX(0);
-  }
+      if (this.cursors.left.isDown)
+        {
+            player.setVelocityX(-160);
+        }
+      else if (this.cursors.right.isDown)
+        {
+            player.setVelocityX(200);
+        }
+      else
+        {
+            player.setVelocityX(0);
+        }
 
-  if (cursors.up.isDown && player.body.touching.down)
-  {
-      player.setVelocityY(-300);
-  }
-    
-
+      // Important change
+      if ((this.cursors.space.isDown || this.cursors.up.isDown) && player.body.onFloor()) 
+        {
+            player.setVelocityY(-300);
+        }
   }
 };
 
