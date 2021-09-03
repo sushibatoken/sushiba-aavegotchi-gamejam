@@ -7,6 +7,7 @@ import PreloaderScene from './Scenes/PreloaderScene';
 import TitleScene from './Scenes/TitleScene';
 import OptionsScene from './Scenes/OptionsScene';
 import CreditsScene from './Scenes/CreditsScene';
+import StoryScene from './Scenes/StoryScene';
 
 Moralis.initialize("ppKsJ87zo59ln2WnmJm3n66TM9mq06I4GYGqLxRq");
 Moralis.serverURL = "https://5naflsgtclgx.moralisweb3.com:2053/server";
@@ -23,6 +24,7 @@ class Game extends Phaser.Game {
     this.scene.add('Title', TitleScene);
     this.scene.add('Options', OptionsScene);
     this.scene.add('Credits', CreditsScene);
+    this.scene.add('Story', StoryScene);
     this.scene.add('Game', GameScene);
     this.scene.start('Boot');
   }

@@ -1,0 +1,102 @@
+{
+    "textures": [
+    {
+    "image": "alfredgotchi.png",
+    "format": "RGBA8888",
+    "size": {
+    "w": 256,
+    "h": 256
+    },
+    "scale": 1,
+    "frames": [
+    {
+    "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256,
+    "trimmed": true
+    },
+    "frame": {
+    "x": 1,
+    "y": 1,
+    "w": 256,
+    "h": 256
+    }
+    },
+    {
+    "filename": "alfredgotchi1.png",
+    "rotated": false,
+    "trimmed": true,
+    "sourceSize": {
+    "w": 256,
+    "h": 256
+    },
+    "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256,
+    "trimmed": true
+    },
+    "frame": {
+    "x": 12,
+    "y": 12,
+    "w": 256,
+    "h": 256
+    }
+    },
+    
+    {
+    "filename": "alfredgotchi2.png",
+    "rotated": false,
+    "trimmed": true,
+    "sourceSize": {
+    "w": 256,
+    "h": 256
+    },
+    "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256,
+    "trimmed": true
+    },
+    "frame": {
+    "x": 24,
+    "y": 24,
+    "w": 256,
+    "h": 256
+    }
+    },
+    {
+    "filename": "alfredgotchi3.png",
+    "rotated": false,
+    "trimmed": true,
+    "sourceSize": {
+    "w": 256,
+    "h": 256
+    },
+    "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256,
+    "trimmed": true
+    },
+    "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+    }
+    }
+    ]
+    }
+    ],
+    "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "3.0",
+    "smartupdate": "$TexturePacker:SmartUpdate:9bc35b33755aa6de51d526bdecf4175b:e0a7c340a08a8c7f50ff5075026df8e3:e7d815c4455bdad6de6ff1a8b57e9b20$"
+    }
+    }

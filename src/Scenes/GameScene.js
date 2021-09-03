@@ -4,22 +4,21 @@ var platforms;
 var player;
 var cursors;
 
-
 export default class GameScene extends Phaser.Scene {
   constructor () {
     super('Game');
 
   }  
-  
+
   async preload ()
   {
-    this.load.image('background', '../../assets/BG.png');
+    this.load.image('background', '../../assets/BG/background3.jpg');
 
     // Looad the tileset
-    this.load.image('tiles', '../../assets/Tilesets/platformPack_tilesheet.png');
+    this.load.image('tiles', '../../assets/Tilesets/group2.png');
     
     // Load the export Tiled JSON
-    this.load.tilemapTiledJSON('map', '../../assets/Tilemaps/map.json');
+    this.load.tilemapTiledJSON('map', '../../assets/Tilemaps/map4.json');
 
 
     // fetch player SVG
@@ -42,7 +41,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
     async initPlayer(){
-      player = this.physics.add.sprite(30, 250, "player").setScale(0.5).refreshBody();
+      player = this.physics.add.sprite(150, 250, "player").setScale(0.5).refreshBody();
       player.setBounce(0.3);
       this.physics.add.collider(player, platforms);
       // Camera movements go here
@@ -59,7 +58,7 @@ export default class GameScene extends Phaser.Scene {
 
     //  The first argument of addTilesetImage is the name of the tileset we used in Tiled. 
     // The second argument is the key of the image we loaded in the preload function.
-    const tileset = map.addTilesetImage('platformPack_tilesheet', 'tiles');
+    const tileset = map.addTilesetImage('group2', 'tiles');
 
     // Add platform layer
     platforms = map.createLayer('Platform', tileset, 0, 200);
