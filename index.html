@@ -7,13 +7,23 @@
             body {
                 background-color: rgb(68, 68, 205);
             }
+
+            .btn-game {
+              background-color: rgb(68, 68, 205);
+              color: #fff;
+              padding: .6rem;
+            }
+
+            .btn-game:hover {
+              background-color: rgb(105, 105, 216);
+            }
         </style>
     </head>
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(39, 39, 98); ">
             <div class="container-fluid">
-              <a class="navbar-brand" style="color:white" href="/">Sushiba-Aavegotchi Game Jam</a>
+              <a class="navbar-brand" style="color:white" href="/">Sushiba's Aavegotchi Game</a>
 
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -27,7 +37,7 @@
                   </li>
                 </ul>
               </div>
-              <button class="btn" id="btn-login" style="color:white">Moralis Login</button>
+              <button class="btn btn-game" id="btn-login" style="color:white">Moralis Login</button>
                 <button class="btn" id="btn-logout" style="color:white">Logout</button>
             </div>
           </nav>
@@ -37,7 +47,7 @@
                 <div class="col-12 text-center" style="margin-top: 200px;">
                     <img src="./assets/logo_sushiba.png" alt="" srcset="">
                     <h1 class="py-2" style="color:white">Sushiba</h1>
-                    <p class="lead" style="color:white">NFT Game made for Aavegotchi Game Jam</p>
+                    <p class="lead" style="color:white">A Puzzle Platformer NFT Game made for Aavegotchi Game Jam</p>
                     <button class="btn btn-primary mx-3 p-3" id="btn-login-home" style="border-radius: 15px; background-color: rgb(39, 39, 98);">Login with Moralis to Play</button>
                     <a href="https://www.sushibatoken.com" target="_blank" rel="noopener noreferrer"><button class="btn btn-primary mx-3 p-3" style="border-radius: 15px; background-color: rgb(39, 39, 98);">Checkout Sushiba</button></a>
                 </div>

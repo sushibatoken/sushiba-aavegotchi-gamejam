@@ -1,5 +1,6 @@
 import 'phaser';
 import config from '../Config/config';
+import Button from '../Objects/Button';
 
 export default class StoryScene extends Phaser.Scene {
   constructor () {
@@ -7,8 +8,11 @@ export default class StoryScene extends Phaser.Scene {
   }
 
   create () {
-    this.titleText = this.add.text(0, 0, 'One Blockchain to Rule them All', { fontSize: '32px', fill: '#fff' });
-    this.storyText = this.add.text(config.width/2, config.height/2, '\n\nIn the far distant future \n\n\n Blockchain took over the world. \n\n\n Human beings are no longer inhabitants of Earth. \n\n\n Their consciousness has been uploaded to the Blockchain \n\n\n They took the form of Aavegotchis. \n\n\n They now reside in the empty vacuum of space \n\n\nwandering around platforms in search of a purpose.',
+    // SKIP
+    this.gameButton = new Button(this, 1300, 680, 'blueButton1', 'blueButton2', 'Skip', 'Game');
+    
+    this.titleText = this.add.text(0, 0, 'How Blockchain Took Over the World', { fontSize: '32px', fill: '#fff' });
+    this.storyText = this.add.text(config.width/2, config.height/2, '\n\nIn the distant future Blockchain took over the world. \n\n\n Human beings\' consciousness has been uploaded to the Blockchain. \n\n\n Only three Entities Survived: \n\n\n 1. Aavegotchis, the form human beings turned into. \n\n\n 2. Moralis, those who govern the laws of Blockchain. \n\n\n 3. Sushiba, those who control the Blockchain AI.\n\n\n Humans, now Aavegotchis, reside in space wandering around platforms \n\n\n in hopes of reuniting with Moralis and Sushiba. \n\n\n\n\n\n\n\n',
        { fontSize: '26px', fill: '#fff' });
     this.zone = this.add.zone(config.width/2, config.height/2, config.width, config.height);
 
@@ -22,7 +26,7 @@ export default class StoryScene extends Phaser.Scene {
       this.zone
     );
 
-    this.storyText.setY(1000);
+    this.storyText.setY(680);
 
     this.creditsTween = this.tweens.add({
       targets: this.titleText,
@@ -37,9 +41,8 @@ export default class StoryScene extends Phaser.Scene {
 
     this.madeByTween = this.tweens.add({
       targets: this.storyText,
-      y: -300,
-      ease: 'Power1',
-      duration: 8000,
+      y: -100,
+      duration: 15000,
       delay: 1000,
       onComplete: function () {
         this.madeByTween.destroy;
